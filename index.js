@@ -269,7 +269,7 @@ app.put('/api/pedidos/:id', async (req, res) => {
 });
 
 // Servir frontend em produção
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV||'production' === 'production') {
   // Serve static files from the 'build' directory
   app.use(express.static(path.join(__dirname, '../client/build')));
 
