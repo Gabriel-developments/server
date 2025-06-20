@@ -270,9 +270,12 @@ app.put('/api/pedidos/:id', async (req, res) => {
 
 // Servir frontend em produção
 if (process.env.NODE_ENV === 'production') {
+  // Serve static files from the 'build' directory
   app.use(express.static(path.join(__dirname, '../client/build')));
+
+  // For any other GET request, serve the index.html file
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
   });
 }
 
